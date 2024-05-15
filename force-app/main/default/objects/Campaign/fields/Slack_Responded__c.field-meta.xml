@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Slack_Responded__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Send slack notification when new responded member is added</description>
+    <externalId>false</externalId>
+    <label>Slack - Responded</label>
+    <type>Checkbox</type>
+</CustomField>
