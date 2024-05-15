@@ -1,4 +1,4 @@
-Looking to try out the demo flows from the Screen Flows: The Underdog Hero of Salesforce presentation? Look no further, you can now install and try them out in you own demo org.
+Looking to try out the demo flows from the Screen Flows: The Underdog Hero of Salesforce presentation? Look no further; you can now install and try them out in your own demo org. (Note: Summer '24 or greater is required)
 
 ## Complete the steps before installing the demo flows
 
