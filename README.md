@@ -1,18 +1,10 @@
-# Salesforce DX Project: Next Steps
+Looking to try out the demo flows from the Screen Flows: The Underdog Hero of Salesforce presentation? Look no further
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+## These flows require the following steps before they can be used
 
-## How Do You Plan to Deploy Your Changes?
+- [Install Unofficialsf  base packs](https://unofficialsf.com/flow-action-and-screen-component-basepacks/)
+- [Enable Campaign Influence](https://help.salesforce.com/s/articleView?id=sf.campaigns_influence_customizable.htm&type=5)
+- [Set up Slack connector](https://help.salesforce.com/s/articleView?id=sf.slack_apps_enable.htm&type=5)
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
-
-## Configure Your Salesforce DX Project
-
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+## More resources
+More resources from the presntation can be found [here](https://nebulaconsulting.co.uk/screen-flows-the-underdog-hero-of-salesforce)
