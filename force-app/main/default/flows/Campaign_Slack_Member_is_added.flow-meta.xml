@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Slack_Message_Action_1</name>
+        <label>Send Slack Message Action 1</label>
+        <locationX>308</locationX>
+        <locationY>276</locationY>
+        <actionName>slackPostMessage</actionName>
+        <actionType>slackPostMessage</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>slackAppIdForToken</name>
+            <value>
+                <stringValue>A03269G3DNE</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>slackWorkspaceIdForToken</name>
+            <value>
+                <stringValue>T01CST8EESV</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>slackConversationId</name>
+            <value>
+                <elementReference>$Record.Campaign.SlackChannel__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>slackMessage</name>
+            <value>
+                <elementReference>slackMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>salesforceRecordId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>slackPostMessage</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
+    <apiVersion>61.0</apiVersion>
+    <description>When a member is added and slack notications are enabled</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>salesforceRecordId</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!$Record.ContactId}), {!$Record.LeadId}, {!$Record.ContactId})</expression>
+    </formulas>
+    <formulas>
+        <name>url</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Partner_Server_URL_260}, FIND( &apos;/services&apos;, {!$Api.Partner_Server_URL_260}))</expression>
+    </formulas>
+    <interviewLabel>Campaign - Slack Member is added {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Campaign - Slack Member is added</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <filterFormula>AND(
+!ISBLANK({!$Record.Campaign.SlackChannel__c}),
+{!$Record.Campaign.Slack_Notification_All__c} = true,
+OR(
+{!$Record.HasResponded} = false,
+AND(
+{!$Record.HasResponded} = true,
+{!$Record.Campaign.Slack_Responded__c} = false
+)
+)
+)</filterFormula>
+        <object>CampaignMember</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <connector>
+                <targetReference>Send_Slack_Message_Action_1</targetReference>
+            </connector>
+            <pathType>AsyncAfterCommit</pathType>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>slackMessage</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>:zap: &lt;{!url}{!salesforceRecordId}|*{!$Record.FirstName} {!$Record.LastName}*&gt; from *{!$Record.CompanyOrAccount}* has been added to the campaign &lt;{!url}{!$Record.CampaignId}|*{!$Record.Campaign.Name}*&gt; :zap:</text>
+    </textTemplates>
+</Flow>
